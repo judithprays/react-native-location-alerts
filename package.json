@@ -9,8 +9,10 @@
   "dependencies": {
     "expo": "^32.0.0",
     "react": "16.5.0",
+    "react-data-fetching": "^0.2.4",
     "react-geolocated": "^2.4.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz"
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-fetch": "^2.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"

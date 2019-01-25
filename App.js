@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet  } from 'react-native';
+import { Fetch } from 'react-data-fetching'
+import { View, Text, StyleSheet, Alert } from 'react-native';
 
-access_token = '54439341.688ae00.74302597d11742d8aa26077448a8fc68'
+// access_token = '54439341.688ae00.74302597d11742d8aa26077448a8fc68'
 
 state = {
     loaded: false,
@@ -16,8 +17,8 @@ class GeolocationExample extends Component {
     this.state = {
       latitude: null,
       longitude: null,
-      error: null,
-    };
+      error: null, 
+     };
   }
 
   componentDidMount() {
@@ -39,13 +40,25 @@ class GeolocationExample extends Component {
   }
 
   render() {
+
+    var SampleNameArray = [ "Killin", "it", "😍"];
+
     return (
       <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Fetch
+              url="https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400"
+            >
+              {({ data }) => (<Text>{data.results.sunrise}</Text>)}
+            </Fetch>
         <Text>Latitude: {this.state.latitude}</Text>
         <Text>Longitude: {this.state.longitude}</Text>
+        {SampleNameArray.map((item, key)=>(
+         <Text key={key}> { item } </Text>)
+         )}
         {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
       </View>
     );
+
   }
 }
 
