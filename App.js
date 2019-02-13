@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Fetch } from 'react-data-fetching'
 import { View, Text, StyleSheet, Alert } from 'react-native';
-import { Moment } from 'react-moment';
 import 'moment-timezone';
 
 // access_token = '54439341.688ae00.74302597d11742d8aa26077448a8fc68'
@@ -22,40 +21,31 @@ class GeolocationExample extends Component {
     this.state = {
       latitude: null,
       longitude: null,
+      test: "",
       data: null,
       error: null, 
      };
   }
 
   componentDidMount() {
-    fetch('https://contact.plaid.com/jobs', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        "name": "Judith Prays",
-        "email": "judithprays@gmail.com",
-        "resume": "https://www.linkedin.com/in/judith-prays-1b361631/",
-        "github": "github.com/judithprays", 
-        "twitter": "@judithprays", 
-        "website": "http://www.duhstudio.com/judith.html" }),
+    fetch('https://api.sunrise-sunset.org/json?lat=34.0521145&lng=-118.3811206')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(myJson) {
+      state.test = myJson.results.sunset;
     });
-
-
-
-    // this.watchId = navigator.geolocation.watchPosition(
-    //   (position) => {
-    //     this.setState({
-    //       latitude: position.coords.latitude,
-    //       longitude: position.coords.longitude,
-    //       error: null,
-    //     });
-    //   },
-    //   (error) => this.setState({ error: error.message }),
-    //   { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
-    // );
+    this.watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
+    );
   }
 
   componentWillUnmount() {
