@@ -8,9 +8,12 @@
   },
   "dependencies": {
     "expo": "^32.0.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.23",
     "react": "16.5.0",
     "react-data-fetching": "^0.2.4",
     "react-geolocated": "^2.4.0",
+    "react-moment": "^0.8.4",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-fetch": "^2.0.0"
   },
